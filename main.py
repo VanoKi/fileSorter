@@ -4,13 +4,14 @@ from icecream import ic
 import humanize
 
 directory = Path('C:/Users/Vanoha/downloads')
-total_size = 0
-items = 0
-for i in directory.iterdir():
-    total_size += i.stat().st_size
-    items += 1
+def directory_size(folder):
+    total_size = 0
+    for i in folder.iterdir():
+        if i.is_dir():
+            total_size += directory_size(i)
+        else:
+            # ic(i.stat().st_size)
+            total_size += i.stat().st_size
+    return total_size
 
-ic(items)
-ic(total_size)
-ic(humanize.naturalsize(total_size))
-
+ic(humanize.naturalsize(directory_size(directory)))

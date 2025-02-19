@@ -1,10 +1,10 @@
 import os
 from pathlib import Path
 from icecream import ic
-import humanize
-import time
+from time import time
+from humanize import naturalsize
 
-start = time.time()
+start = time()
 directory = Path('C:/Users/Vanoha/downloads')
 def directory_size(folder):
     total_size = 0
@@ -21,11 +21,13 @@ for i in directory.iterdir():
     if i.is_file():
         # ic(i.suffix)
         key = i.suffix
+        size = naturalsize(i.stat().st_size)
         if key in dict:
             dict[key][0] += 1
+            dict[key][1] += size
         else:
-            dict[key] = [1]
+            dict[key] = [1, size]
 
-end = time.time()
+end = time()
 ic(end - start)
 ic(dict)

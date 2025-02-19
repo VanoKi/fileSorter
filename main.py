@@ -22,9 +22,9 @@ for i in directory.iterdir():
         # ic(i.suffix)
         key = i.suffix
         if key in dict:
-            dict[key] += 1
+            dict[key][0] += 1
         else:
-            dict[key] = 1
+            dict[key] = [1]
 
 end = time.time()
 ic(end - start)

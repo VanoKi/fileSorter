@@ -17,7 +17,7 @@ dict = {}
 for i in directory.iterdir():
     if i.is_file():
         key = i.suffix
-        size = round(i.stat().st_size / 1048576, 2)
+        size = i.stat().st_size
         if key in dict:
             dict[key][0] += 1
             dict[key][1] += size
@@ -26,4 +26,4 @@ for i in directory.iterdir():
 
 end = time()
 ic(end - start)
-ic(dict)
+ic([f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb' for i in dict])

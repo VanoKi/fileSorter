@@ -1,0 +1,8 @@
+asttokens==3.0.0
+colorama==0.4.6
+executing==2.2.0
+humanize==4.12.3
+icecream==2.1.5
+loguru==0.7.3
+Pygments==2.19.2
+win32_setctime==1.2.0

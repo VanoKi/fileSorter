@@ -1,11 +1,16 @@
 import shutil
-import loguru
+from loguru import logger
 from pathlib import Path
 from icecream import ic
 from time import time
 
+logger.remove()
+logger.add(lambda msg: print(msg, end=''), colorize=True)
+logger.add('sorter.log', rotation='500 KB', compression='zip', level='INFO', format='<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>')
+
 start = time()
 directory = Path('C:/Users/Vanoha/downloads')
+destination = Path('E:/SORTED')
 def directory_size(folder):
     total_size = 0
     dict = {}
@@ -30,9 +35,11 @@ def show_total_size():
                 dict[key] = [1, size]
 
     end = time()
-    ic(end - start)
-    ic([f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb' for i in dict])
+    logger.info(end - start)
+    logger.info([f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb\n' for i in dict])
 
-# show_total_size()
-for i in directory.iterdir():
-    ic(i, i.suffix)
+show_total_size()
+# for i in directory.iterdir():
+#     ic(i.stem, i.suffix)
+
+ic(start - time())

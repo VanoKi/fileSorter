@@ -6,7 +6,7 @@ from time import time
 
 logger.remove()
 logger.add(lambda msg: print(msg, end=''), colorize=True)
-logger.add('sorter.log', rotation='500 KB', compression='zip', level='INFO', format='<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>')
+logger.add('sorter.log', mode='w', rotation='500 KB', compression='zip', level='INFO', format='<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>')
 
 start = time()
 directory = Path('C:/Users/Vanoha/downloads')
@@ -36,10 +36,10 @@ def show_total_size():
 
     end = time()
     logger.info(end - start)
-    logger.info([f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb\n' for i in dict])
+    [logger.info(f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb') for i in dict]
 
 show_total_size()
 # for i in directory.iterdir():
 #     ic(i.stem, i.suffix)
 
-ic(start - time())
+ic(time() - start)

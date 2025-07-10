@@ -17,17 +17,22 @@ def directory_size(folder):
             total_size += i.stat().st_size
     return total_size
 
-dict = {}
-for i in directory.iterdir():
-    if i.is_file():
-        key = i.suffix
-        size = i.stat().st_size
-        if key in dict:
-            dict[key][0] += 1
-            dict[key][1] += size
-        else:
-            dict[key] = [1, size]
+def show_total_size():
+    dict = {}
+    for i in directory.iterdir():
+        if i.is_file():
+            key = i.suffix
+            size = i.stat().st_size
+            if key in dict:
+                dict[key][0] += 1
+                dict[key][1] += size
+            else:
+                dict[key] = [1, size]
 
-end = time()
-ic(end - start)
-ic([f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb' for i in dict])
+    end = time()
+    ic(end - start)
+    ic([f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb' for i in dict])
+
+# show_total_size()
+for i in directory.iterdir():
+    ic(i, i.suffix)

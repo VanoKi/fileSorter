@@ -1,4 +1,5 @@
 import shutil
+import loguru
 from pathlib import Path
 from icecream import ic
 from time import time
@@ -16,6 +17,7 @@ def directory_size(folder):
             total_size += i.stat().st_size
     return total_size
 
+dict = {}
 for i in directory.iterdir():
     if i.is_file():
         key = i.suffix

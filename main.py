@@ -5,7 +5,7 @@ from time import time
 from datetime import datetime
 
 def setup_loger():
-    now = datetime.now().strftime("Y-%m-%d_%H-%M-%S")
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     log_file = f'sorter_{now}.log'
     logger.add(lambda msg: print(msg, end=''), colorize=True, format="<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>")
     logger.add(log_file, level='INFO', format='{time} | {level} | {message}')

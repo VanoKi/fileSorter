@@ -1,16 +1,15 @@
 from shutil import copy2
 from loguru import logger
 from pathlib import Path
-from icecream import ic
 from time import time
 from datetime import datetime
 
-logger.remove()
-logger.add(lambda msg: print(msg, end=''), colorize=True)
-now = datetime.now().strftime("Y-%m-%d_%H-%M-%S")
-log_file = f'sorter_{now}.log'
-logger.add('sorter.log', mode='w', rotation='500 KB', compression='zip', level='INFO', format='<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>')
-logger.info(Path.cwd())
+def setup_loger():
+    now = datetime.now().strftime("Y-%m-%d_%H-%M-%S")
+    log_file = f'sorter_{now}.log'
+    logger.add(lambda msg: print(msg, end=''), colorize=True)
+    logger.add(log_file, level='INFO', format='time | level | message')
+    logger.info(Path.cwd())
 
 start = time()
 directory = Path('C:/Users/Vanoha/downloads')
@@ -54,20 +53,20 @@ GROUPS = {
     "Other": []
 }
 
-for file in directory.iterdir():
-    if file.is_file():
-        for dir in GROUPS:
-            if file.suffix in GROUPS[dir]:
-                path_to_file = destination / dir
-                Path(path_to_file).mkdir(exist_ok=True, parents=True)
-                copy2(file, f'{destination}/{dir}')
-                logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_file}')
-                break
-            # else:
-            #     path_to_other = f'{destination}/Other'
-            #     Path(path_to_other).mkdir(exist_ok=True, parents=True)
-            #     logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_other}')
-            #     copy2(file, path_to_other)
+def main():
+    for file in directory.iterdir():
+        if file.is_file():
+            for dir in GROUPS:
+                if file.suffix in GROUPS[dir]:
+                    path_to_file = destination / dir
+                    Path(path_to_file).mkdir(exist_ok=True, parents=True)
+                    copy2(file, f'{destination}/{dir}')
+                    logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_file}')
+                    break
+                # else:
+                #     path_to_other = f'{destination}/Other'
+                #     Path(path_to_other).mkdir(exist_ok=True, parents=True)
+                #     logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_other}')
+                #     copy2(file, path_to_other)
+    logger.info(time() - start)
 
-
-logger.info(time() - start)

@@ -3,9 +3,12 @@ from loguru import logger
 from pathlib import Path
 from icecream import ic
 from time import time
+from datetime import datetime
 
 logger.remove()
 logger.add(lambda msg: print(msg, end=''), colorize=True)
+now = datetime.now().strftime("Y-%m-%d_%H-%M-%S")
+log_file = f'sorter_{now}.log'
 logger.add('sorter.log', mode='w', rotation='500 KB', compression='zip', level='INFO', format='<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>')
 logger.info(Path.cwd())
 

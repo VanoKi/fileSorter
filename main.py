@@ -7,8 +7,9 @@ from datetime import datetime
 def setup_loger():
     now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     log_file = f'sorter_{now}.log'
-    logger.add(lambda msg: print(msg, end=''), colorize=True, format="<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>")
-    logger.add(log_file, level='INFO', format='{time} | {level} | {message}')
+    log_format = "<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>"
+    logger.add(lambda msg: print(msg, end=''), colorize=True, format=log_format)
+    logger.add(log_file, level='INFO', format=log_format)
     logger.info(Path.cwd())
 
 directory = Path('C:/Users/Vanoha/downloads')
@@ -50,6 +51,7 @@ GROUPS = {
     "Archives": ['.zip', '.rar', '.7z', '.gz'],
     "Executables": ['.exe', '.msi', '.apk'],
     "Torrents" : ['.torrent'],
+    "Figma" : ['.fig']
 }
 
 def main():

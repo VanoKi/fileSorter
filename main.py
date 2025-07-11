@@ -64,7 +64,9 @@ def main():
                     path_to_file = destination / dir
                     Path(path_to_file).mkdir(exist_ok=True, parents=True)
                     copy2(file, f'{destination}/{dir}')
-                    logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_file}')
+                    logger.info(f'file {file.suffix}: {file.stem} copied to dir: {path_to_file}')
+                    file.unlink()
+                    logger.info(f'file {file.suffix}: {file.stem} deleted from {directory}')
                     break
                 # else:
                 #     path_to_other = f'{destination}/Other'

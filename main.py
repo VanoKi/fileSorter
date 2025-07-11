@@ -60,11 +60,11 @@ def main():
     for file in directory.iterdir():
         file: Path
         if file.is_file():
-            for dir in GROUPS:
-                if file.suffix in GROUPS[dir]:
-                    path_to_file = destination / dir
+            for folder in GROUPS:
+                if file.suffix in GROUPS[folder]:
+                    path_to_file = destination / folder
                     Path(path_to_file).mkdir(exist_ok=True, parents=True)
-                    copy2(file, f'{destination}/{dir}')
+                    copy2(file, f'{destination}/{folder}')
                     logger.info(f'file {file.suffix}: {file.stem} copied to dir: {path_to_file}')
                     file.unlink()
                     logger.info(f'file {file.suffix}: {file.stem} deleted from {directory}')

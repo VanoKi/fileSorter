@@ -58,6 +58,7 @@ def main():
     setup_loger()
     start = time()
     for file in directory.iterdir():
+        file: Path
         if file.is_file():
             for dir in GROUPS:
                 if file.suffix in GROUPS[dir]:

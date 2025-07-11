@@ -37,8 +37,17 @@ def show_total_size():
     end = time()
     logger.info(end - start)
     [logger.info(f'{dict[i][0]} files have extension {i} and total size {round(dict[i][1] / 1048576, 2)}mb') for i in dict]
+# show_total_size()
 
-show_total_size()
+GROUPS = {
+    "📚 Documents": ['.pdf', '.epub', '.mobi', '.txt', '.doc', '.docx', '.djvu', '.fb2'],
+    "🖼 Images": ['.jpg', '.jpeg', '.png', '.gif'],
+    "🎵 Audio": ['.mp3', '.wav', '.ogg'],
+    "🎥 Video": ['.mp4', '.avi', '.mkv'],
+    "📦 Archives": ['.zip', '.rar', '.7z', '.gz'],
+    "⚙ Executables": ['.exe', '.msi', '.apk'],
+    "📄 Other": []
+}
 # for i in directory.iterdir():
 #     ic(i.stem, i.suffix)
 

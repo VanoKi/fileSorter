@@ -8,10 +8,9 @@ def setup_loger():
     now = datetime.now().strftime("Y-%m-%d_%H-%M-%S")
     log_file = f'sorter_{now}.log'
     logger.add(lambda msg: print(msg, end=''), colorize=True)
-    logger.add(log_file, level='INFO', format='time | level | message')
+    logger.add(log_file, level='INFO', format='{time} | {level} | {message}')
     logger.info(Path.cwd())
 
-# start = time()
 directory = Path('C:/Users/Vanoha/downloads')
 destination = Path('E:/SORTED')
 def directory_size(folder):
@@ -26,6 +25,7 @@ def directory_size(folder):
     return total_size
 
 def show_total_size():
+    start = time()
     dict = {}
     for i in directory.iterdir():
         if i.is_file():

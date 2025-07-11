@@ -12,7 +12,7 @@ def setup_loger():
     logger.add(log_file, level='INFO', format=log_format)
     logger.info(Path.cwd())
 
-directory = Path('C:/Users/Vanoha/downloads')
+directory = Path('C:/Users/Vanoha/downloads/Telegram Desktop')
 destination = Path('E:/SORTED')
 def directory_size(folder):
     total_size = 0
@@ -61,7 +61,7 @@ def main():
         file: Path
         if file.is_file():
             for folder in GROUPS:
-                if file.suffix in GROUPS[folder]:
+                if file.suffix.lower() in GROUPS[folder]:
                     path_to_file = destination / folder
                     Path(path_to_file).mkdir(exist_ok=True, parents=True)
                     copy2(file, f'{destination}/{folder}')

@@ -11,7 +11,7 @@ def setup_loger():
     logger.add(log_file, level='INFO', format='time | level | message')
     logger.info(Path.cwd())
 
-start = time()
+# start = time()
 directory = Path('C:/Users/Vanoha/downloads')
 destination = Path('E:/SORTED')
 def directory_size(folder):
@@ -54,6 +54,8 @@ GROUPS = {
 }
 
 def main():
+    setup_loger()
+    start = time()
     for file in directory.iterdir():
         if file.is_file():
             for dir in GROUPS:
@@ -69,4 +71,7 @@ def main():
                 #     logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_other}')
                 #     copy2(file, path_to_other)
     logger.info(time() - start)
+
+if __name__ == "__main__":
+    main()
 

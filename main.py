@@ -1,4 +1,4 @@
-import shutil
+from shutil import copy2
 from loguru import logger
 from pathlib import Path
 from icecream import ic
@@ -49,16 +49,21 @@ GROUPS = {
     "⚙ Executables": ['.exe', '.msi', '.apk'],
     "📄 Other": []
 }
-for file in directory.iterdir():
-    # if file.is_dir:
-    #     ic(True)
-    for dir in GROUPS:
-        if file.suffix in GROUPS[dir]:
-            Path(f'{destination}/{dir}').mkdir(exist_ok=True, parents=True)
-            # logger.info(f'The direectory {dir} was created')
-            logger.info(f'file: {file.stem} moved to dir: {destination}/{dir}')
-        else:
-            Path(f'{destination}/📄 Other').mkdir(exist_ok=True, parents=True)
 
+for file in directory.iterdir():
+    if file.is_file():
+        for dir in GROUPS:
+            if file.suffix in GROUPS[dir]:
+                path_to_file = destination / dir
+                Path(path_to_file).mkdir(exist_ok=True, parents=True)
+                copy2(file, f'{destination}/{dir}')
+                logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_file}')
+            else:
+                path_to_other = f'{destination}/📄 Other'
+                Path(path_to_other).mkdir(exist_ok=True, parents=True)
+                logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_other}')
+                copy2(file, path_to_other)
+    else:
+        copy2(file, destination)
 
 logger.info(time() - start)

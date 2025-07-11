@@ -41,13 +41,14 @@ def show_total_size():
 # show_total_size()
 
 GROUPS = {
-    "📚 Documents": ['.pdf', '.epub', '.mobi', '.txt', '.doc', '.docx', '.djvu', '.fb2'],
-    "🖼 Images": ['.jpg', '.jpeg', '.png', '.gif'],
-    "🎵 Audio": ['.mp3', '.wav', '.ogg'],
-    "🎥 Video": ['.mp4', '.avi', '.mkv'],
-    "📦 Archives": ['.zip', '.rar', '.7z', '.gz'],
-    "⚙ Executables": ['.exe', '.msi', '.apk'],
-    "📄 Other": []
+    "Documents": ['.pdf', '.epub', '.mobi', '.txt', '.doc', '.docx', '.djvu', '.fb2'],
+    "Images": ['.jpg', '.jpeg', '.png', '.gif'],
+    "Audio": ['.mp3', '.wav', '.ogg'],
+    "Video": ['.mp4', '.avi', '.mkv'],
+    "Archives": ['.zip', '.rar', '.7z', '.gz'],
+    "Executables": ['.exe', '.msi', '.apk'],
+    "Torrents" : ['.torrent'],
+    "Other": []
 }
 
 for file in directory.iterdir():
@@ -63,7 +64,6 @@ for file in directory.iterdir():
                 Path(path_to_other).mkdir(exist_ok=True, parents=True)
                 logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_other}')
                 copy2(file, path_to_other)
-    else:
-        copy2(file, destination)
+
 
 logger.info(time() - start)

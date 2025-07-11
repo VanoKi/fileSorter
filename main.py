@@ -7,6 +7,7 @@ from time import time
 logger.remove()
 logger.add(lambda msg: print(msg, end=''), colorize=True)
 logger.add('sorter.log', mode='w', rotation='500 KB', compression='zip', level='INFO', format='<green>{time}</green> | <level>{level}</level> | <cyan>{message}</cyan>')
+logger.info(Path.cwd())
 
 start = time()
 directory = Path('C:/Users/Vanoha/downloads')
@@ -49,12 +50,15 @@ GROUPS = {
     "📄 Other": []
 }
 for file in directory.iterdir():
+    # if file.is_dir:
+    #     ic(True)
     for dir in GROUPS:
         if file.suffix in GROUPS[dir]:
             Path(f'{destination}/{dir}').mkdir(exist_ok=True, parents=True)
+            # logger.info(f'The direectory {dir} was created')
+            logger.info(f'file: {file.stem} moved to dir: {destination}/{dir}')
         else:
             Path(f'{destination}/📄 Other').mkdir(exist_ok=True, parents=True)
 
-ic(Path.cwd())
 
-ic(time() - start)
+logger.info(time() - start)

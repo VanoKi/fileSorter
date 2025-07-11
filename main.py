@@ -59,11 +59,12 @@ for file in directory.iterdir():
                 Path(path_to_file).mkdir(exist_ok=True, parents=True)
                 copy2(file, f'{destination}/{dir}')
                 logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_file}')
-            else:
-                path_to_other = f'{destination}/📄 Other'
-                Path(path_to_other).mkdir(exist_ok=True, parents=True)
-                logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_other}')
-                copy2(file, path_to_other)
+                break
+            # else:
+            #     path_to_other = f'{destination}/Other'
+            #     Path(path_to_other).mkdir(exist_ok=True, parents=True)
+            #     logger.info(f'file{file.suffix}: {file.stem} copied to dir: {path_to_other}')
+            #     copy2(file, path_to_other)
 
 
 logger.info(time() - start)

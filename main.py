@@ -50,7 +50,6 @@ GROUPS = {
     "Archives": ['.zip', '.rar', '.7z', '.gz'],
     "Executables": ['.exe', '.msi', '.apk'],
     "Torrents" : ['.torrent'],
-    "Other": []
 }
 
 def main():

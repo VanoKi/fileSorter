@@ -48,10 +48,12 @@ GROUPS = {
     "⚙ Executables": ['.exe', '.msi', '.apk'],
     "📄 Other": []
 }
-for i in directory.iterdir():
-    for j in GROUPS:
-        if i.suffix in GROUPS[j]:
-            Path(f'{destination}/{j}').mkdir(exist_ok=True, parents=True)
+for file in directory.iterdir():
+    for dir in GROUPS:
+        if file.suffix in GROUPS[dir]:
+            Path(f'{destination}/{dir}').mkdir(exist_ok=True, parents=True)
+        else:
+            Path(f'{destination}/📄 Other').mkdir(exist_ok=True, parents=True)
 
 ic(Path.cwd())
 

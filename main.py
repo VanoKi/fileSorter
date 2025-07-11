@@ -44,10 +44,10 @@ def show_total_size():
 # show_total_size()
 
 GROUPS = {
-    "Documents": ['.pdf', '.epub', '.mobi', '.txt', '.doc', '.docx', '.djvu', '.fb2'],
-    "Images": ['.jpg', '.jpeg', '.png', '.gif'],
+    "Documents": ['.pdf', '.epub', '.mobi', '.txt', '.doc', '.docx', '.djvu', '.fb2', '.xlsx', '.html'],
+    "Images": ['.jpg', '.jpeg', '.png', '.gif', '.heic'],
     "Audio": ['.mp3', '.wav', '.ogg'],
-    "Video": ['.mp4', '.avi', '.mkv'],
+    "Video": ['.mp4', '.avi', '.mkv', '.mov'],
     "Archives": ['.zip', '.rar', '.7z', '.gz'],
     "Executables": ['.exe', '.msi', '.apk'],
     "Torrents" : ['.torrent'],
